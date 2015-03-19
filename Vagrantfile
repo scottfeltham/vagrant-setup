@@ -22,7 +22,11 @@ Vagrant.configure(2) do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-  # config.vm.network "forwarded_port", guest: 80, host: 8080
+  config.vm.network "forwarded_port", guest: 9000, host: 9000
+  config.vm.network "forwarded_port", guest: 9029, host: 9029
+  config.vm.network "forwarded_port", guest: 9353, host: 9353
+  config.vm.network "forwarded_port", guest: 8100, host: 8100
+  config.vm.network "forwarded_port", guest: 8500, host: 8500
 
   #rsync config
   #config.vm.synced_folder ".", "/vagrant", type: "rsync",
@@ -30,9 +34,13 @@ Vagrant.configure(2) do |config|
   #end
 
   # Required for NFS to work, pick any local IP
-  # config.vm.network :private_network, ip: '192.168.50.50'
+  config.vm.network "private_network", type: "dhcp"
   # Use NFS for shared folders for better performance
-  # config.vm.synced_folder '.', '/vagrant', nfs: true
+  config.vm.synced_folder '.', '/vagrant', nfs: true
+
+  # winnfsg config
+  config.winnfsd.uid = 1
+  config.winnfsd.gid = 1
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on

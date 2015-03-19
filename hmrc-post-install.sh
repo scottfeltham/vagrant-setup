@@ -20,7 +20,8 @@ workspace=/vagrant/Applications/hmrc-development-environment/hmrc/
 mkdir -p $workspace
 
 echo 'export WORKSPACE=$workspace' >> ~/.bashrc
-. ~./bashrc
+# sourceing bashrc still an issue
+#. ~./bashrc
 
 echo 'installing MongoDB....'
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 > /dev/null
